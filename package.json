@@ -1,6 +1,6 @@
 {
   "name": "borders-couchbase-client",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Couchbase keyvalue backend for borders",
   "main": "lib/index.js",
   "module": "src/index.js",
