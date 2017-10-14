@@ -11,7 +11,8 @@
   "files": [
     "src",
     "lib",
-    "spec.js"
+    "views.js",
+    "mock.js"
   ],
   "scripts": {
     "prepublishOnly": "npm run ci && npm run clean && npm run build",
@@ -35,15 +36,15 @@
     "eslint-config-actano-base": "^2.1.0",
     "eslint-plugin-import": "^2.7.0",
     "mocha": "^4.0.0",
-    "semver": "latest",
+    "semver": "^5.4.1",
     "sinon": "^4.0.0",
     "sinon-chai": "^2.14.0"
   },
   "dependencies": {
-    "borders": "latest",
+    "borders": "^1.3.0",
     "borders-key-value": "^2.0.1",
     "eval": "^0.1.2",
-    "is-promise": "latest",
+    "is-promise": "^2.1.0",
     "stream-to-array": "^2.3.0",
     "stream-to-iterator": "^2.0.0",
     "thenify": "^3.3.0",
