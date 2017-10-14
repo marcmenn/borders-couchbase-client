@@ -1,10 +1,13 @@
 import Context from 'borders'
-import { expect, AssertionError } from 'chai'
-import { insert, upsert, replace, remove, KeyAlreadyExistsError } from 'borders-key-value'
-import promised from '../src/promised'
+import { insert, KeyAlreadyExistsError, remove, replace, upsert } from 'borders-key-value'
+import { AssertionError, expect } from 'chai'
+import { version } from 'couchbase/package.json'
+import Pending from 'mocha/lib/pending'
+import semver from 'semver'
 import getBucket from '../src/get-bucket-command'
 import testBucketFactory from '../src/mock-bucket-factory'
 import createBackend from '../src/multi-bucket'
+import promised from '../src/promised'
 
 describe('data-access-server/couchbase/cas', () => {
   const key = 'key'
@@ -48,8 +51,10 @@ describe('data-access-server/couchbase/cas', () => {
     yield* expectEntityConflict(upsert(key, thirdValue))
   }))
 
-  // TODO skipped, since inmem-backend of npm couchbase 2.2.4 does not support this
-  it.skip('should fail removing if cas changed from outside', execute(function* test() {
+  it('should fail removing if cas changed from outside', execute(function* test() {
+    if (semver.satisfies(version, '<= 2.4.1')) { // unsupported in Mock yet
+      throw new Pending()
+    }
     const bucket = yield getBucket()
     const { replace: bucketReplace } = promised(bucket, 'replace')
     yield insert(key, value)

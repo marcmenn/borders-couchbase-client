@@ -1,9 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
-// TODO: the following steps might work by extracting views directly from babel-ast?
-// Load and transform view Source Document with babel
-import path from 'path'
 import { transformFileSync } from 'babel-core'
 import _eval from 'eval'
+import path from 'path'
 
 const babelOptions = {
   presets: ['es2015'],
