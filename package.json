@@ -1,0 +1,49 @@
+{
+  "name": "borders-couchbase-client",
+  "version": "0.0.1",
+  "description": "Couchbase keyvalue backend for borders",
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "repository": "https://github.com/actano/borders-couchbase-client.git",
+  "author": "Actano GmbH",
+  "license": "MIT",
+  "private": false,
+  "files": [
+    "src",
+    "lib",
+    "spec.js"
+  ],
+  "scripts": {
+    "prepublishOnly": "npm run clean && npm run ci && babel src --out-dir lib",
+    "ci": "npm run lint && npm test",
+    "test": "mocha",
+    "lint": "eslint src test",
+    "clean": "rm -rf lib"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^8.0.1",
+    "babel-plugin-transform-async-generator-functions": "^6.24.1",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "chai": "^4.0.2",
+    "eslint": "^4.3.0",
+    "eslint-config-actano-base": "^2.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "mocha": "^4.0.0",
+    "sinon": "^4.0.0",
+    "sinon-chai": "^2.14.0"
+  },
+  "dependencies": {
+    "borders": "latest",
+    "borders-key-value": "^2.0.1",
+    "couchbase": "^2.4.1",
+    "eval": "^0.1.2",
+    "is-promise": "latest",
+    "stream-to-array": "^2.3.0",
+    "stream-to-iterator": "^2.0.0",
+    "thenify": "^3.3.0",
+    "through2": "^2.0.3"
+  }
+}
