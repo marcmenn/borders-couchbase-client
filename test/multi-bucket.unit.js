@@ -13,18 +13,25 @@ describe('multi-bucket', () => {
   const VALUE = { paylod: 'multi-bucket-test-value' }
   const FIRST_BUCKET = 'first'
   const SECOND_BUCKET = 'second'
+  const DEFAULT_BUCKET_NAME = 'default bucket name'
 
   let sandbox
   let bucketFactorySpy
+  let lastBucketName
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create()
+    lastBucketName = null
   })
 
   afterEach(() => sandbox.restore())
 
+  const bucketFactory = (name = DEFAULT_BUCKET_NAME) => {
+    lastBucketName = name
+    return new Mock.Cluster().openBucket(name, 'password')
+  }
+
   const testWithBackend = test => async () => {
-    const bucketFactory = name => new Mock.Cluster().openBucket(name || 'default', 'password')
     bucketFactorySpy = sinon.spy(bucketFactory)
     const context = new Context().use(backend(bucketFactorySpy))
     await context.execute(test())
@@ -53,6 +60,13 @@ describe('multi-bucket', () => {
     const value = yield cb.get(KEY)
     expect(value).to.not.eq(null)
   }))
+
+  it('should use default value of bucket-factory name param, if no bucket specified',
+    testWithBackend(function* test() {
+      yield kv.insert(KEY, VALUE)
+      yield cb.get(KEY)
+      expect(lastBucketName).to.eq(DEFAULT_BUCKET_NAME)
+    }))
 
   it('should use specified bucket', testWithBackend(function* test() {
     yield cb.insert(KEY, { msg: 'conflict if in the same bucket' }, { bucket: FIRST_BUCKET })
