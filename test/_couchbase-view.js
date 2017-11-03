@@ -1,8 +1,6 @@
-/* eslint-disable no-undef */
-module.exports = {
-  test: {
-    map(doc, meta) {
-      emit(meta.id, doc)
-    },
+/* eslint-disable no-undef,import/prefer-default-export */
+export const test = {
+  map(doc, meta) {
+    emit(meta.id, doc)
   },
 }

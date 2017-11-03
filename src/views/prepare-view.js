@@ -20,7 +20,9 @@ export default function (src) {
   // Evaluate as if required
   const evalled = _eval(babelResult.code)
   // extract default export
-  const views = evalled.default ? evalled.__esModule : evalled
+  const views = evalled.__esModule && evalled.default && Object.keys(evalled).length === 1
+    ? evalled.default
+    : evalled
 
   return { views: JSON.parse(JSON.stringify(views, replacer)) }
 }
