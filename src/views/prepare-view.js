@@ -4,7 +4,7 @@ import _eval from 'eval'
 import path from 'path'
 
 const babelOptions = {
-  presets: ['es2015'],
+  presets: ['env'],
 }
 
 // Transform to json with sourcecode of functions
