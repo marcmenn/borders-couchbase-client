@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+- '8'
+- '6'
+cache: yarn
+script:
+- npm run ci
+deploy:
+  provider: npm
+  skip_cleanup: true
+  email: marcus.mennemeier@actano.de
+  on:
+    tags: true
+    repo: actano/borders-couchbase-client
+    node: '8'
+  api_key:
+    secure: q5aPEiiYTnI9KlDxZTd6gU0anZD2/xv1lJ1DYl6P0vqcuasqbPhE/qcAMLOyrpait03W+6D78YVHOxwxmmxy/p3aQb/B1EQGsNo9JXu0lq3nGzZXnggegsBwqInhRcc+pKklRvK06eE+dz+KMGU9JPuNEIpf23JJgc6mlO/BLWGQmrQmpyDwpFPobydInRS6cOhojNHIgw5YMnYpIZCWT32wmIdsZdk+SzOcaKjQmAJs+6HcICrWODVjbcbIoU2BDrllPDXK8EPhMUxbazUxSatz5rcMIax8wjS81C1a0h1c5pBZdQ8wP5166PucIvFjFD/eK2Lj3sEPdTjPbahy0r+UheOC7leEo3iUn8/ij0Jz/t8inn+uAx6BhAtGvAtNRma0a+yZhghbxlixY2h6DD/tvKTJrzjeYJhGoC40Ia8dQ4gUiN75ywEIS1uKgo1TTwV/eAw8sHm/cOEV7+5GMz9YT1Mof+zQ8WrqKoMRs0AwyQGjOEW1iwbWb/OWKusi4BwHSAdacr9MnTD3g3nZfFPXqBitWIbyGMNGPBmH90FNtf1q8Eo3hxR/jXb/kFLMfZaLMoef3gYJVPtHBCUE4819qy9WVmGBZfOuzc3kLXXuvmZxo7JkWyOYV8L1jwfvHMR9+vTze5AeQ4jwUXkgOr8Oc1bbBPZz4OU/GTAumW4=
