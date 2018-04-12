@@ -2,8 +2,11 @@ language: node_js
 node_js:
 - '8'
 cache: yarn
+before_install: yarn global add greenkeeper-lockfile@1
+before_script: greenkeeper-lockfile-update
 script:
 - npm run ci
+after_script: greenkeeper-lockfile-upload
 deploy:
   provider: npm
   skip_cleanup: true
@@ -14,3 +17,6 @@ deploy:
     node: '8'
   api_key:
     secure: q5aPEiiYTnI9KlDxZTd6gU0anZD2/xv1lJ1DYl6P0vqcuasqbPhE/qcAMLOyrpait03W+6D78YVHOxwxmmxy/p3aQb/B1EQGsNo9JXu0lq3nGzZXnggegsBwqInhRcc+pKklRvK06eE+dz+KMGU9JPuNEIpf23JJgc6mlO/BLWGQmrQmpyDwpFPobydInRS6cOhojNHIgw5YMnYpIZCWT32wmIdsZdk+SzOcaKjQmAJs+6HcICrWODVjbcbIoU2BDrllPDXK8EPhMUxbazUxSatz5rcMIax8wjS81C1a0h1c5pBZdQ8wP5166PucIvFjFD/eK2Lj3sEPdTjPbahy0r+UheOC7leEo3iUn8/ij0Jz/t8inn+uAx6BhAtGvAtNRma0a+yZhghbxlixY2h6DD/tvKTJrzjeYJhGoC40Ia8dQ4gUiN75ywEIS1uKgo1TTwV/eAw8sHm/cOEV7+5GMz9YT1Mof+zQ8WrqKoMRs0AwyQGjOEW1iwbWb/OWKusi4BwHSAdacr9MnTD3g3nZfFPXqBitWIbyGMNGPBmH90FNtf1q8Eo3hxR/jXb/kFLMfZaLMoef3gYJVPtHBCUE4819qy9WVmGBZfOuzc3kLXXuvmZxo7JkWyOYV8L1jwfvHMR9+vTze5AeQ4jwUXkgOr8Oc1bbBPZz4OU/GTAumW4=
+env:
+  global:
+    secure: OD3uizDyop+7IvVzRi3Zy17x6kLvKymlxY8nNEGvhE0WzO4Apc1cJ8qNt5lcWYxF9JBxzB4QVQ/BSy4CUxjbLJ/cRm5JeIWtoCcZa+fzQyx/lKZoIUvo5aYa1JwS6exp+hQGlVRCmzkFUQRvqch3FsTTlc0uLzkrox/XN9MB9NaVBFNfz8HKhSCYVXf+woji3cFwc6hg0sZFwYZmaOvyChOxKnbZrh8U1n4Uz5QJ06BQdlJppxLtpkknzQJqsPxR5ip5TsnqXbv1/IzAWQ+9JfXhyztEQbGsYqYPcL6HTL6tGaqiAR4ANEFSToOKdXjR1WlYk5UGIKdrJf7Hn/OFfcNVgmbK6Ynk5+taNIEPzIJaoFEh8PyOiopw0cHBFeT/4bEivdumUQTctpQvIsG4yZmkcT5WfmIUXwSiHwthQKil4JMzQaSkABwWsm4cVCMi/Uu9o23StoLBl60AKmUdtKB+0T9KMdTYTUIoOOlx2vtsCSZO7KTLb5K61vsXcmtlKsp9QDdZdd24wBLZegMiFVpOkLTfr0yqViEdSBr1c6Pl85dmEI4PREBfi/KlyxrMeMkegZxuHvVv1NzU1z3rb7bvZ0ieTSJegOuFShae4Xv8N0ln+NApHqggLgZnvBIrQIezjZrTfLg4TnsXzg+rdKGRtokaBJ+GkO1/23Th/tM=
