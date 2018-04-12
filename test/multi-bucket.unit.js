@@ -61,12 +61,14 @@ describe('multi-bucket', () => {
     expect(value).to.not.eq(null)
   }))
 
-  it('should use default value of bucket-factory name param, if no bucket specified',
+  it(
+    'should use default value of bucket-factory name param, if no bucket specified',
     testWithBackend(function* test() {
       yield kv.insert(KEY, VALUE)
       yield cb.get(KEY)
       expect(lastBucketName).to.eq(DEFAULT_BUCKET_NAME)
-    }))
+    }),
+  )
 
   it('should use specified bucket', testWithBackend(function* test() {
     yield cb.insert(KEY, { msg: 'conflict if in the same bucket' }, { bucket: FIRST_BUCKET })
