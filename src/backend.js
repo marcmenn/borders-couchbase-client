@@ -9,8 +9,8 @@ import {
 } from 'borders-key-value'
 import { errors as cbErrors } from 'couchbase'
 import streamToArray from 'stream-to-array'
-import streamToIterator from 'stream-to-iterator'
 import promisify from 'thenify'
+import streamToIterator from './stream-to-iterator'
 import { build as buildViewQuery } from './views/build-view-query'
 
 import prepareView from './views/prepare-view'

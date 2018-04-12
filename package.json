@@ -27,6 +27,7 @@
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-plugin-transform-async-generator-functions": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.24.1",
     "chai": "^4.0.2",
@@ -45,7 +46,6 @@
     "eval": "^0.1.2",
     "is-promise": "^2.1.0",
     "stream-to-array": "^2.3.0",
-    "stream-to-iterator": "^2.0.0",
     "thenify": "^3.3.0",
     "through2": "^2.0.3"
   },
