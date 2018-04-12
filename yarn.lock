@@ -768,6 +768,12 @@ borders@^1.3.0:
   dependencies:
     p-map "^1.1.1"
 
+borders@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/borders/-/borders-1.5.0.tgz#9d1ac0bc98dab03cc22912979dbb1129945a4221"
+  dependencies:
+    p-map "^1.1.1"
+
 brace-expansion@^1.1.7:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.8.tgz#c07b211c7c952ec1f8efd51a77ef0d1d3990a292"
