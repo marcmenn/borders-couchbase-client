@@ -31,7 +31,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.24.1",
     "chai": "^4.0.2",
-    "couchbase": "^2.4.1",
+    "couchbase": "^2.4.6",
     "eslint": "^4.10.0",
     "eslint-config-actano-base": "^3.0.0",
     "eslint-plugin-import": "^2.8.0",
