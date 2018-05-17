@@ -39,7 +39,13 @@ export default (bucket) => {
   }
 
   const queryViewAsStream = ({ ddoc, name, options }) => {
-    const query = bucket.query(buildViewQuery(ddoc, name, options))
+    const viewQuery = buildViewQuery(ddoc, name, options)
+
+    // TODO remove this if Couchbase Mock supports postoptions.keys, introduced in https://github.com/couchbase/couchnode/commit/29bb706153b5cc6d7d678593158482b9c222a08f#diff-49c769c648cc38fea2382da923d00027
+    if (bucket.lcbVersion === '0.0.0' && viewQuery.postoptions && viewQuery.postoptions.keys && !viewQuery.options.keys) {
+      viewQuery.options.keys = JSON.stringify(viewQuery.postoptions.keys)
+    }
+    const query = bucket.query(viewQuery)
     return query2stream(query)
   }
 
