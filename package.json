@@ -4,6 +4,7 @@
   "description": "Couchbase keyvalue backend for borders",
   "main": "lib/index.js",
   "module": "src/index.js",
+  "jsnext:main": "src/index.js",
   "repository": "https://github.com/actano/borders-couchbase-client.git",
   "author": "Actano GmbH",
   "license": "MIT",
