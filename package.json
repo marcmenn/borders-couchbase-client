@@ -54,9 +54,5 @@
     "borders": "^1.6.0",
     "borders-key-value": "^2.0.3",
     "couchbase": "^2.2"
-  },
-  "optionalDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-preset-env": "^1.6.1"
   }
 }
