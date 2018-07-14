@@ -1,11 +1,31 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import { transformFileSync } from 'babel-core'
 import _eval from 'eval'
 import path from 'path'
 
-const babelOptions = {
-  presets: ['env'],
+const getBabel6 = () => {
+  const { transformFileSync } = require('babel-core') // eslint-disable-line
+  const babelOptions = {
+    presets: ['env'],
+  }
+  return { transformFileSync, babelOptions }
 }
+
+const getBabel7 = () => {
+  const { transformFileSync } = require('@babel/core') // eslint-disable-line
+  const babelOptions = {
+    presets: ['@babel/env'],
+  }
+  return { transformFileSync, babelOptions }
+}
+
+const getBabel = () => {
+  try {
+    return getBabel6()
+  } catch (e) {
+    return getBabel7()
+  }
+}
+
+const { babelOptions, transformFileSync } = getBabel()
 
 // Transform to json with sourcecode of functions
 function replacer(key, value) {
