@@ -1,3 +1,5 @@
+import './symbol-async-iterator'
+
 const NOT_READABLE = Symbol('not readable')
 const READABLE = Symbol('readable')
 const ENDED = Symbol('ended')

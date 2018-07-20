@@ -4,7 +4,7 @@
       "targets": {
         "node": "8.9.0"
       },
-      "useBuiltIns": "usage",
+      "useBuiltIns": "false",
       "shippedProposals": true
     }]
   ]
