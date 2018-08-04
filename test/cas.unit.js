@@ -52,7 +52,7 @@ describe('data-access-server/couchbase/cas', () => {
   }))
 
   it('should fail removing if cas changed from outside', execute(function* test() {
-    if (semver.satisfies(version, '<= 2.4.6')) { // unsupported in Mock yet
+    if (semver.satisfies(version, '<= 2.5.1')) { // unsupported in Mock yet
       throw new Pending()
     }
     const bucket = yield getBucket()
