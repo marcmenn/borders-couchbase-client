@@ -35,19 +35,19 @@ describe('data-access-server/couchbase/cas', () => {
 
   const execute = fn => () => new Context().use(backend).execute(fn())
 
-  it('should fail replacing if cas changed from outside', execute(function* test() {
+  it('should fail replacing if cas changed from outside', execute(async function* test() {
     const bucket = yield getBucket()
     const { replace: bucketReplace } = promised(bucket, 'replace')
     yield insert(key, value)
-    yield bucketReplace(key, secondValue)
+    await bucketReplace(key, secondValue)
     yield* expectEntityConflict(replace(key, thirdValue))
   }))
 
-  it('should fail upserting if cas changed from outside', execute(function* test() {
+  it('should fail upserting if cas changed from outside', execute(async function* test() {
     const bucket = yield getBucket()
     const { replace: bucketReplace } = promised(bucket, 'replace')
     yield insert(key, value)
-    yield bucketReplace(key, secondValue)
+    await bucketReplace(key, secondValue)
     yield* expectEntityConflict(upsert(key, thirdValue))
   }))
 

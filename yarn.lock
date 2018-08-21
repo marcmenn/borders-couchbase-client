@@ -859,9 +859,9 @@ borders-key-value@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/borders-key-value/-/borders-key-value-2.0.3.tgz#12457531f9114c251996115ed0def5999fa78960"
 
-borders@^1.6.0:
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/borders/-/borders-1.7.3.tgz#8c2c1dba6dedf0e6b5d85483cca19279c5d25442"
+borders@^2.0.0-beta.1:
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/borders/-/borders-2.0.0-beta.1.tgz#1d8e61be7fd1018894f30062d468f1e2d990b9f6"
 
 brace-expansion@^1.1.7:
   version "1.1.11"

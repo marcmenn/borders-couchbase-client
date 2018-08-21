@@ -33,7 +33,7 @@
     "@babel/preset-env": "^7.0.0-beta.51",
     "@babel/register": "^7.0.0-beta.51",
     "babel-eslint": "^8.0.1",
-    "borders": "^1.6.0",
+    "borders": "^2.0.0-beta.1",
     "borders-key-value": "^2.0.3",
     "chai": "^4.0.2",
     "couchbase": "^2.4.6",
@@ -53,7 +53,7 @@
     "through2": "^2.0.3"
   },
   "peerDependencies": {
-    "borders": "^1.6.0",
+    "borders": "^2.0.0-beta.1",
     "borders-key-value": "^2.0.3",
     "couchbase": "^2.2"
   }

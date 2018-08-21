@@ -37,11 +37,6 @@ describe('multi-bucket', () => {
     await context.execute(test())
   }
 
-  it('should not call bucket factory without command', testWithBackend(function* test() {
-    expect(bucketFactorySpy.callCount).to.eq(0)
-    yield Promise.resolve()
-  }))
-
   it('should call bucket factory for every bucket', testWithBackend(function* test() {
     yield cb.insert(KEY, VALUE, { bucket: FIRST_BUCKET })
     yield cb.insert(KEY, VALUE, { bucket: SECOND_BUCKET })
