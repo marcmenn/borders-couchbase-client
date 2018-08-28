@@ -32,7 +32,7 @@
     "@babel/polyfill": "^7.0.0-beta.51",
     "@babel/preset-env": "^7.0.0-beta.51",
     "@babel/register": "^7.0.0-beta.51",
-    "babel-eslint": "^8.0.1",
+    "babel-eslint": "^9.0.0",
     "borders": "^2.0.0-beta.1",
     "borders-key-value": "^2.0.3",
     "chai": "^4.0.2",
