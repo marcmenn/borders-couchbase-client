@@ -20,7 +20,7 @@ describe('multi-bucket', () => {
   let lastBucketName
 
   beforeEach(() => {
-    sandbox = sinon.sandbox.create()
+    sandbox = sinon.createSandbox()
     lastBucketName = null
   })
 

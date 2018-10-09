@@ -25,7 +25,7 @@ describe('expiry', () => {
   let upsertSpy
 
   beforeEach(() => {
-    sandbox = sinon.sandbox.create()
+    sandbox = sinon.createSandbox()
     bucket = new Mock.Cluster().openBucket('name', 'password')
     insertSpy = sandbox.spy(bucket, 'insert')
     replaceSpy = sandbox.spy(bucket, 'replace')
