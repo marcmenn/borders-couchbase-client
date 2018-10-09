@@ -51,14 +51,14 @@ describe('data-access-server/couchbase/cas', () => {
     yield* expectEntityConflict(upsert(key, thirdValue))
   }))
 
-  it('should fail removing if cas changed from outside', execute(function* test() {
+  it('should fail removing if cas changed from outside', execute(async function* test() {
     if (semver.satisfies(version, '<= 2.5.1')) { // unsupported in Mock yet
       throw new Pending()
     }
     const bucket = yield getBucket()
     const { replace: bucketReplace } = promised(bucket, 'replace')
     yield insert(key, value)
-    yield bucketReplace(key, secondValue)
+    await bucketReplace(key, secondValue)
     yield* expectEntityConflict(remove(key, thirdValue))
   }))
 })
