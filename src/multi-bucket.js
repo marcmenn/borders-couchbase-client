@@ -1,24 +1,28 @@
-import isPromise from 'is-promise'
-import singleBackend, { SUPPORTED_COMMANDS } from './backend'
-
-const createBackend = async (bucket) => {
-  if (isPromise(bucket)) {
-    return createBackend(await bucket)
-  }
-  return singleBackend(bucket)
-}
+import { cacheBackend } from 'borders-key-value'
+import { SUPPORTED_COMMANDS } from './backend'
+import keyValueBackend from './backends/key-value'
+import upsertViewsBackend from './backends/upsert-views'
+import viewsBackend from './backends/views'
 
 export default (bucketFactory) => {
   const backends = {}
 
-  const createCommand = command => async (payload) => {
+  const createCommand = type => async (payload, { connect, invoke }) => {
     const bucketName = (payload && payload.bucket) || undefined
-    const cacheKey = bucketName || ''
-    if (!backends[cacheKey]) {
-      backends[cacheKey] = createBackend(bucketFactory(bucketName))
+    const key = bucketName || ''
+    if (!backends[key]) {
+      const create = async () => {
+        const bucket = await bucketFactory(bucketName)
+        return Object.assign(
+          connect(cacheBackend(), keyValueBackend(bucket)),
+          connect(viewsBackend(bucket)),
+          connect(upsertViewsBackend(bucket)),
+        )
+      }
+      backends[key] = create()
     }
-    const backend = await backends[cacheKey]
-    const result = backend[command](payload)
+    const backend = await backends[key]
+    const result = invoke({ type, payload }, backend)
     return Promise.resolve(result)
   }
 
