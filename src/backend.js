@@ -14,12 +14,11 @@ import streamToIterator from './stream-to-iterator'
 import { build as buildViewQuery } from './views/build-view-query'
 
 import prepareView from './views/prepare-view'
-import { TYPE as GET_BUCKET } from './get-bucket-command'
 import query2stream from './query2stream'
 import { VIEW_AS_ARRAY, VIEW_AS_ASYNC_ITERATOR, VIEW_AS_STREAM } from './view'
 import { TYPE as USE_VIEW } from './view-file-command'
 
-export const SUPPORTED_COMMANDS = [GET, REMOVE, UPSERT, REPLACE, INSERT, GET_BUCKET,
+export const SUPPORTED_COMMANDS = [GET, REMOVE, UPSERT, REPLACE, INSERT,
   USE_VIEW, VIEW_AS_ARRAY, VIEW_AS_ASYNC_ITERATOR, VIEW_AS_STREAM]
 
 export default (bucket) => {
@@ -128,10 +127,6 @@ export default (bucket) => {
         }
         throw e
       }
-    },
-
-    [GET_BUCKET]() {
-      return bucket
     },
 
     async [USE_VIEW]({ name, srcFile }) {

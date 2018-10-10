@@ -4,7 +4,6 @@ import { AssertionError, expect } from 'chai'
 import { version } from 'couchbase/package.json'
 import Pending from 'mocha/lib/pending'
 import semver from 'semver'
-import getBucket from '../src/get-bucket-command'
 import testBucketFactory from '../src/mock-bucket-factory'
 import createBackend from '../src/multi-bucket'
 import promised from '../src/promised'
@@ -28,15 +27,16 @@ describe('data-access-server/couchbase/cas', () => {
   const expectEntityConflict = expectThrow(KeyAlreadyExistsError)
 
   let backend
+  let bucket
 
   beforeEach(() => {
-    backend = createBackend(testBucketFactory)
+    bucket = testBucketFactory()
+    backend = createBackend(() => bucket)
   })
 
   const execute = fn => () => new Context().use(backend).execute(fn())
 
   it('should fail replacing if cas changed from outside', execute(async function* test() {
-    const bucket = yield getBucket()
     const { replace: bucketReplace } = promised(bucket, 'replace')
     yield insert(key, value)
     await bucketReplace(key, secondValue)
@@ -44,7 +44,6 @@ describe('data-access-server/couchbase/cas', () => {
   }))
 
   it('should fail upserting if cas changed from outside', execute(async function* test() {
-    const bucket = yield getBucket()
     const { replace: bucketReplace } = promised(bucket, 'replace')
     yield insert(key, value)
     await bucketReplace(key, secondValue)
@@ -55,7 +54,6 @@ describe('data-access-server/couchbase/cas', () => {
     if (semver.satisfies(version, '<= 2.6.0')) { // unsupported in Mock yet
       throw new Pending()
     }
-    const bucket = yield getBucket()
     const { replace: bucketReplace } = promised(bucket, 'replace')
     yield insert(key, value)
     await bucketReplace(key, secondValue)
