@@ -1,12 +1,11 @@
 import isPromise from 'is-promise'
-import { cacheBackend } from 'borders-key-value'
 import singleBackend, { SUPPORTED_COMMANDS } from './backend'
 
 const createBackend = async (bucket) => {
   if (isPromise(bucket)) {
     return createBackend(await bucket)
   }
-  return cacheBackend(singleBackend(bucket))
+  return singleBackend(bucket)
 }
 
 export default (bucketFactory) => {
