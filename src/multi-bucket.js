@@ -5,25 +5,31 @@ import upsertViewsBackend from './backends/upsert-views'
 import viewsBackend from './backends/views'
 
 export default (bucketFactory) => {
+  const buckets = {}
   const backends = {}
 
-  const createCommand = type => async (payload, { connect, invoke }) => {
+  const createCommand = type => async (payload, { execute }) => {
     const bucketName = (payload && payload.bucket) || undefined
     const key = bucketName || ''
-    if (!backends[key]) {
-      const create = async () => {
-        const bucket = await bucketFactory(bucketName)
-        return Object.assign(
-          connect(cacheBackend(), keyValueBackend(bucket)),
-          connect(viewsBackend(bucket)),
-          connect(upsertViewsBackend(bucket)),
-        )
-      }
-      backends[key] = create()
+    if (!buckets[key]) {
+      buckets[key] = bucketFactory(bucketName)
     }
-    const backend = await backends[key]
-    const result = invoke({ type, payload }, backend)
-    return Promise.resolve(result)
+    const bucket = await buckets[key]
+
+    return execute({
+      type,
+      payload,
+      backend(connect) {
+        if (!backends[key]) {
+          backends[key] = Object.assign(
+            connect(cacheBackend(), keyValueBackend(bucket)),
+            connect(viewsBackend(bucket)),
+            connect(upsertViewsBackend(bucket)),
+          )
+        }
+        return backends[key]
+      },
+    })
   }
 
   const result = {}
