@@ -1,40 +1,18 @@
-import { cacheBackend } from 'borders-key-value'
-import { SUPPORTED_COMMANDS } from './backend'
-import keyValueBackend from './backends/key-value'
-import upsertViewsBackend from './backends/upsert-views'
-import viewsBackend from './backends/views'
+import keyValueBackend from './multi-bucket-kv'
+import viewsBackend from './multi-bucket-views'
 
-export default (bucketFactory) => {
+export default (bucketFactory, kvBackendDecorator, viewBackendDecorator) => {
   const buckets = {}
-  const backends = {}
 
-  const createCommand = type => async (payload, { execute }) => {
-    const bucketName = (payload && payload.bucket) || undefined
-    const key = bucketName || ''
-    if (!buckets[key]) {
-      buckets[key] = bucketFactory(bucketName)
+  const _bucketFactory = (bucketName) => {
+    if (!buckets[bucketName]) {
+      buckets[bucketName] = bucketFactory(bucketName)
     }
-    const bucket = await buckets[key]
-
-    return execute({
-      type,
-      payload,
-      backend(connect) {
-        if (!backends[key]) {
-          backends[key] = Object.assign(
-            connect(cacheBackend(), keyValueBackend(bucket)),
-            connect(viewsBackend(bucket)),
-            connect(upsertViewsBackend(bucket)),
-          )
-        }
-        return backends[key]
-      },
-    })
+    return buckets[bucketName]
   }
 
-  const result = {}
-  for (const command of SUPPORTED_COMMANDS) {
-    result[command] = createCommand(command)
-  }
-  return result
+  return Object.assign(
+    keyValueBackend(_bucketFactory, kvBackendDecorator),
+    viewsBackend(_bucketFactory, viewBackendDecorator),
+  )
 }
