@@ -900,15 +900,15 @@ bl@^1.0.0:
     readable-stream "^2.3.5"
     safe-buffer "^5.1.1"
 
-borders-key-value@^3.0.0-beta.2:
-  version "3.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/borders-key-value/-/borders-key-value-3.0.0-beta.2.tgz#9ac28683954ef152d36427db811406fde40a35d9"
-  integrity sha512-TU0tcNMao9cFF7zy4JRK93/U3KhsPRUnbkEcw9ZByel6ry/DuPofB58ZCfnyy+Zx7WAvGGmobSEIFwM7r5JWoA==
+borders-key-value@^3.0.0-beta.5:
+  version "3.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/borders-key-value/-/borders-key-value-3.0.0-beta.5.tgz#534fbfa50b1c26d18d1e0a7e46a7b924ca9f8fd0"
+  integrity sha512-LmLkuZlqDo23O39mX73tc2OXDOhwaIsJVMBo5g0iaxTGOU7036g37nGy+JP8/V379mORh4g1jPTVcte0hkFgsg==
 
-borders@^2.0.0-beta.10:
-  version "2.0.0-beta.10"
-  resolved "https://registry.yarnpkg.com/borders/-/borders-2.0.0-beta.10.tgz#04561d09c38633737687cca7db33bcabd820d871"
-  integrity sha512-3K0bQsGDMCiHEniG6+a+fdGHh2abCLwkW8Fw6tJ83oOaMHXZNl5kXNMloPAGj2+3aeTMBb4SVoWQdrM8+CqEpQ==
+borders@^2.0.0-beta.13:
+  version "2.0.0-beta.13"
+  resolved "https://registry.yarnpkg.com/borders/-/borders-2.0.0-beta.13.tgz#f388536b7fdbc1e1cab66d60ae90e77a12bad75f"
+  integrity sha512-KdtAnOB2yxBg/VHZPaMRGhPVNn6Ys4UIm7uFDHK0T9C7PbTAViY8LzbpJ+q6vlzdl74CRetLdmAiUNp8my3mmA==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
