@@ -905,10 +905,10 @@ borders-key-value@^3.0.0-beta.5:
   resolved "https://registry.yarnpkg.com/borders-key-value/-/borders-key-value-3.0.0-beta.5.tgz#534fbfa50b1c26d18d1e0a7e46a7b924ca9f8fd0"
   integrity sha512-LmLkuZlqDo23O39mX73tc2OXDOhwaIsJVMBo5g0iaxTGOU7036g37nGy+JP8/V379mORh4g1jPTVcte0hkFgsg==
 
-borders@^2.0.0-beta.13:
-  version "2.0.0-beta.13"
-  resolved "https://registry.yarnpkg.com/borders/-/borders-2.0.0-beta.13.tgz#f388536b7fdbc1e1cab66d60ae90e77a12bad75f"
-  integrity sha512-KdtAnOB2yxBg/VHZPaMRGhPVNn6Ys4UIm7uFDHK0T9C7PbTAViY8LzbpJ+q6vlzdl74CRetLdmAiUNp8my3mmA==
+borders@^2.0.0-beta.14:
+  version "2.0.0-beta.14"
+  resolved "https://registry.yarnpkg.com/borders/-/borders-2.0.0-beta.14.tgz#163bd68459ec85e201132a873df48146ca01f04f"
+  integrity sha512-EonaAJ54lEH+A9w9XcECzLywEkqk4aj3QZ7V9yFX5ORz9HfSxhjA/QGjTgPjPNY+GpPWrs6gvRLvzMGYEHvN/Q==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
