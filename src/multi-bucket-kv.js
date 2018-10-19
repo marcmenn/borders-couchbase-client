@@ -11,9 +11,15 @@ export default (bucketFactory, backendDecorator) => {
   const createBackend = async (key) => {
     const bucket = await (key === '' ? bucketFactory() : bucketFactory(key))
     const backends = [cacheBackend(), keyValueBackend(bucket)]
-    if (backendDecorator) return backendDecorator(backends)
+    if (backendDecorator) return backendDecorator.decorate(backends)
     return backends
   }
 
-  return multiplex(selectBackend, createBackend, SUPPORTED_COMMANDS)
+  const commands = [...SUPPORTED_COMMANDS]
+
+  if (backendDecorator) {
+    commands.push(...backendDecorator.commands)
+  }
+
+  return multiplex(selectBackend, createBackend, commands)
 }

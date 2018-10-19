@@ -71,4 +71,43 @@ describe('multi-bucket', () => {
     const value = yield cb.get(KEY, { bucket: null })
     expect(value).to.deep.eq(VALUE)
   }))
+
+  it('should decorate the key-value backend', async () => {
+    const DECORATOR_COMMAND = 'DECORATOR_COMMAND'
+
+    const decorateBackend = {
+      async [kv.GET](payload, { next }) {
+        const result = await next()
+        result.decorated = true
+        return result
+      },
+
+      async [kv.INSERT](payload, { next }) {
+        return next()
+      },
+
+      [DECORATOR_COMMAND](payload) {
+        return { decoratorPayload: payload }
+      },
+    }
+
+    const _backend = backend(
+      bucketFactory,
+      {
+        commands: [DECORATOR_COMMAND],
+        decorate: backends => [decorateBackend, ...backends],
+      },
+    )
+
+    const context = new Context().use(_backend)
+    await context.execute(function* () {
+      yield kv.insert('foo', { id: 1 })
+      const result = yield kv.get('foo')
+
+      expect(result).to.deep.equal({ id: 1, decorated: true })
+
+      const decorateResult = yield { type: DECORATOR_COMMAND, payload: 42 }
+      expect(decorateResult).to.deep.equal({ decoratorPayload: 42 })
+    }())
+  })
 })
