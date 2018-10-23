@@ -1,10 +1,13 @@
 import * as kv from 'borders-key-value'
 import Context from 'borders'
+import { multiplex } from 'borders/lib/backends'
 import { Mock } from 'couchbase'
 import chai from 'chai'
 import sinon from 'sinon'
-import backend from '../src/multi-bucket'
+import selectByBucket from '../src/select-by-bucket'
+import { createKeyValueBackendFromPool, KV_COMMANDS } from '../src/backends'
 import * as cb from '../src/commands'
+import BucketPool from '../src/pool'
 
 const { expect } = chai
 
@@ -33,7 +36,10 @@ describe('multi-bucket', () => {
 
   const testWithBackend = test => async () => {
     bucketFactorySpy = sinon.spy(bucketFactory)
-    const context = new Context().use(backend(bucketFactorySpy))
+    const pool = new BucketPool(bucketFactorySpy)
+    const createBackend = createKeyValueBackendFromPool(pool)
+    const selectBackend = selectByBucket(DEFAULT_BUCKET_NAME)
+    const context = new Context().use(multiplex(selectBackend, createBackend, KV_COMMANDS))
     await context.execute(test())
   }
 
@@ -71,43 +77,4 @@ describe('multi-bucket', () => {
     const value = yield cb.get(KEY, { bucket: null })
     expect(value).to.deep.eq(VALUE)
   }))
-
-  it('should decorate the key-value backend', async () => {
-    const DECORATOR_COMMAND = 'DECORATOR_COMMAND'
-
-    const decorateBackend = {
-      async [kv.GET](payload, { next }) {
-        const result = await next()
-        result.decorated = true
-        return result
-      },
-
-      async [kv.INSERT](payload, { next }) {
-        return next()
-      },
-
-      [DECORATOR_COMMAND](payload) {
-        return { decoratorPayload: payload }
-      },
-    }
-
-    const _backend = backend(
-      bucketFactory,
-      {
-        commands: [DECORATOR_COMMAND],
-        decorate: backends => [decorateBackend, ...backends],
-      },
-    )
-
-    const context = new Context().use(_backend)
-    await context.execute(function* () {
-      yield kv.insert('foo', { id: 1 })
-      const result = yield kv.get('foo')
-
-      expect(result).to.deep.equal({ id: 1, decorated: true })
-
-      const decorateResult = yield { type: DECORATOR_COMMAND, payload: 42 }
-      expect(decorateResult).to.deep.equal({ decoratorPayload: 42 })
-    }())
-  })
 })

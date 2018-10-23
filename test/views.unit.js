@@ -1,10 +1,10 @@
 import Context from 'borders'
-import { expect } from 'chai'
 import { insert } from 'borders-key-value'
+import { expect } from 'chai'
 import streamToArray from 'stream-to-array'
-import { queryViewAsStream, queryViewAsArray, queryViewAsAsyncIterator } from '../src/view'
+import { KeyValueBackend, UpsertViewsBackend } from '../src/backends'
 import testBucketFactory from '../src/mock-bucket-factory'
-import createBackend from '../src/multi-bucket'
+import { queryViewAsArray, queryViewAsAsyncIterator, queryViewAsStream } from '../src/view'
 import useViewFile from '../src/view-file-command'
 
 describe('data-access-server/couchbase', () => {
@@ -12,8 +12,10 @@ describe('data-access-server/couchbase', () => {
     let borderContext
 
     beforeEach(async () => {
-      const backend = createBackend(testBucketFactory)
-      borderContext = new Context().use(backend)
+      const bucket = testBucketFactory()
+      borderContext = new Context()
+        .use(new KeyValueBackend(bucket))
+        .use(new UpsertViewsBackend(bucket))
       await borderContext.execute(function* _loadView() {
         yield useViewFile('test', 'test/_couchbase-view.js')
       }())

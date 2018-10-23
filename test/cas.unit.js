@@ -4,8 +4,8 @@ import { AssertionError, expect } from 'chai'
 import { version } from 'couchbase/package.json'
 import Pending from 'mocha/lib/pending'
 import semver from 'semver'
+import { KeyValueBackend } from '../src/backends'
 import testBucketFactory from '../src/mock-bucket-factory'
-import createBackend from '../src/multi-bucket'
 import promised from '../src/promised'
 
 describe('data-access-server/couchbase/cas', () => {
@@ -31,7 +31,7 @@ describe('data-access-server/couchbase/cas', () => {
 
   beforeEach(() => {
     bucket = testBucketFactory()
-    backend = createBackend(() => bucket)
+    backend = new KeyValueBackend(bucket)
   })
 
   const execute = fn => () => new Context().use(backend).execute(fn())
