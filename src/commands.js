@@ -9,7 +9,7 @@ const assertValid = (options) => {
 
 // we're intentionally modifying payload, since we're calling borders-key-value commands,
 // which creates fresh command objects
-function addOptions(bordersCommand, options = {}) {
+export function addOptions(bordersCommand, options = {}) {
   assertValid(options)
   const { payload } = bordersCommand
   const { expiry, bucket } = options
