@@ -1,15 +1,13 @@
 import { multiplex } from 'borders/backends'
 import upsertViewsBackend, { SUPPORTED_COMMANDS as UPSERT_VIEWS_SUPPORTED } from './backends/upsert-views'
 import viewsBackend, { SUPPORTED_COMMANDS as VIEWS_SUPPORTED } from './backends/views'
+import _selectBackend from './select-by-bucket'
 
 const SUPPORTED_COMMANDS = [...VIEWS_SUPPORTED, ...UPSERT_VIEWS_SUPPORTED]
 
-export default (bucketFactory, backendDecorator) => {
-  const selectBackend = (payload) => {
-    const { bucket } = payload
-    return bucket || ''
-  }
+const selectBackend = _selectBackend('')
 
+export default (bucketFactory, backendDecorator) => {
   const createBackend = async (key) => {
     const bucket = await (key === '' ? bucketFactory() : bucketFactory(key))
     const backends = [Object.assign(
