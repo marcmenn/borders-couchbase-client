@@ -3,7 +3,7 @@ import Context from 'borders'
 import { Mock } from 'couchbase'
 import chai from 'chai'
 import sinon from 'sinon'
-import backend from '../src/backend'
+import { KeyValueBackend } from '../src/backends'
 import * as cb from '../src/commands'
 
 const { expect } = chai
@@ -37,7 +37,7 @@ describe('expiry', () => {
   afterEach(() => sandbox.restore())
 
   const testWithBackend = test => async () => {
-    const context = new Context().use(backend(bucket))
+    const context = new Context().use(new KeyValueBackend(bucket))
     await context.execute(test())
   }
 
