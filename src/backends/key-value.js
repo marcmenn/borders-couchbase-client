@@ -110,4 +110,5 @@ export default class CouchbaseBucketKeyValueBackend {
 
 export const SUPPORTED_COMMANDS = getCommands(new CouchbaseBucketKeyValueBackend())
 
-export const createBackendFromPool = pool => backend => new CouchbaseBucketKeyValueBackend(pool.get(backend))
+export const createBackendFromPool = pool => backend =>
+  new CouchbaseBucketKeyValueBackend(pool.get(backend))

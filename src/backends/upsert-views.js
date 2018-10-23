@@ -28,4 +28,5 @@ export default class CouchbaseUpsertViewsBackend extends CouchbaseViewsBackend {
 
 export const SUPPORTED_COMMANDS = getCommands(new CouchbaseUpsertViewsBackend())
 
-export const createBackendFromPool = pool => backend => new CouchbaseUpsertViewsBackend(pool.get(backend))
+export const createBackendFromPool = pool => backend =>
+  new CouchbaseUpsertViewsBackend(pool.get(backend))
