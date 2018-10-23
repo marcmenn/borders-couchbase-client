@@ -1,7 +1,7 @@
 import mockBucketFactory from './mock-bucket-factory'
 
 export default class BucketPool {
-  constructor(factory = mockBucketFactory) {
+  constructor(factory = mockBucketFactory()) {
     this._factory = factory
     this._buckets = new Map()
   }

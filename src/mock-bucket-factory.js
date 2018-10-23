@@ -1,3 +1,6 @@
 import { Mock } from 'couchbase'
 
-export default name => new Mock.Cluster().openBucket(name || 'default', 'password')
+export default () => {
+  const cluster = new Mock.Cluster()
+  return name => cluster.openBucket(name || 'default', 'password')
+}

@@ -30,7 +30,7 @@ describe('data-access-server/couchbase/cas', () => {
   let bucket
 
   beforeEach(() => {
-    bucket = testBucketFactory()
+    bucket = testBucketFactory()()
     backend = new KeyValueBackend(bucket)
   })
 

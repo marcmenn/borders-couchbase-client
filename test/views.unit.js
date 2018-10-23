@@ -12,7 +12,7 @@ describe('data-access-server/couchbase', () => {
     let borderContext
 
     beforeEach(async () => {
-      const bucket = testBucketFactory()
+      const bucket = testBucketFactory()()
       borderContext = new Context()
         .use(new KeyValueBackend(bucket))
         .use(new UpsertViewsBackend(bucket))
