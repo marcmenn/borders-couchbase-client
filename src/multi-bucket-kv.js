@@ -1,5 +1,5 @@
 import { multiplex } from 'borders/backends'
-import { CacheBackend } from 'borders-key-value'
+import { CACHE_STATS, CacheBackend } from 'borders-key-value'
 import keyValueBackend, { SUPPORTED_COMMANDS } from './backends/key-value'
 
 export default (bucketFactory, backendDecorator) => {
@@ -15,7 +15,7 @@ export default (bucketFactory, backendDecorator) => {
     return backends
   }
 
-  const commands = [...SUPPORTED_COMMANDS]
+  const commands = [...SUPPORTED_COMMANDS, CACHE_STATS]
 
   if (backendDecorator) {
     commands.push(...backendDecorator.commands)
