@@ -1,5 +1,5 @@
 import { multiplex } from 'borders/backends'
-import { cacheBackend } from 'borders-key-value'
+import { CacheBackend } from 'borders-key-value'
 import keyValueBackend, { SUPPORTED_COMMANDS } from './backends/key-value'
 
 export default (bucketFactory, backendDecorator) => {
@@ -10,7 +10,7 @@ export default (bucketFactory, backendDecorator) => {
 
   const createBackend = async (key) => {
     const bucket = await (key === '' ? bucketFactory() : bucketFactory(key))
-    const backends = [cacheBackend(), keyValueBackend(bucket)]
+    const backends = [new CacheBackend(), keyValueBackend(bucket)]
     if (backendDecorator) return backendDecorator.decorate(backends)
     return backends
   }
