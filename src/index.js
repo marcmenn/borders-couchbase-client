@@ -1,5 +1,6 @@
 export * from './commands'
 export { default } from './multi-bucket'
+export { default as BucketPool } from './pool'
 export {
   queryViewAsArray,
   queryViewAsAsyncIterator,
