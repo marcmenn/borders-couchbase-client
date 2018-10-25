@@ -46,4 +46,3 @@ export default function (src) {
 
   return { views: JSON.parse(JSON.stringify(views, replacer)) }
 }
-

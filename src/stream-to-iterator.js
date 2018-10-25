@@ -57,20 +57,21 @@ function streamToIterator(stream) {
           untilEnd(),
         ])
         return asyncIterator.next()
-      } else if (state === ENDED) {
-        return { done: true, value: null }
-      } else if (state === ERRORED) {
-        throw error
-      } else {
-        const data = stream.read()
-
-        if (data != null) {
-          return { done: false, value: data }
-        }
-
-        state = NOT_READABLE
-        return asyncIterator.next()
       }
+      if (state === ENDED) {
+        return { done: true, value: null }
+      }
+      if (state === ERRORED) {
+        throw error
+      }
+      const data = stream.read()
+
+      if (data != null) {
+        return { done: false, value: data }
+      }
+
+      state = NOT_READABLE
+      return asyncIterator.next()
     },
   }
 

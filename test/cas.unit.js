@@ -1,5 +1,7 @@
 import Context from 'borders'
-import { insert, KeyAlreadyExistsError, remove, replace, upsert } from 'borders-key-value'
+import {
+  KeyAlreadyExistsError, insert, remove, replace, upsert,
+} from 'borders-key-value'
 import { AssertionError, expect } from 'chai'
 import { version } from 'couchbase/package.json'
 import Pending from 'mocha/lib/pending'
