@@ -45,7 +45,7 @@
     "eval": "^0.1.2",
     "stream-to-array": "^2.3.0",
     "thenify": "^3.3.0",
-    "through2": "^2.0.3"
+    "through2": "^3.0.0"
   },
   "peerDependencies": {
     "borders": "^2.0.0",
