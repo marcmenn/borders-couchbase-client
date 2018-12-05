@@ -1,6 +1,6 @@
 import Context from 'borders'
 import {
-  KeyAlreadyExistsError, insert, remove, replace, upsert,
+  KeyAlreadyExistsError, insert, remove, replace, upsert, getCas,
 } from 'borders-key-value'
 import { AssertionError, expect } from 'chai'
 import { version } from 'couchbase/package.json'
@@ -61,4 +61,23 @@ describe('data-access-server/couchbase/cas', () => {
     await bucketReplace(key, secondValue)
     yield* expectEntityConflict(remove(key, thirdValue))
   }))
+
+  describe('getCas', () => {
+    it('should return the cas of the requested document', execute(async function* test() {
+      const { get: bucketGet } = promised(bucket, 'get')
+
+      yield insert(key, value)
+      const cas = yield getCas(key)
+      const { cas: bucketCas } = await bucketGet(key)
+
+      expect(cas).to.be.an('object')
+      expect(cas).to.deep.equal(bucketCas)
+    }))
+
+    it('should return `null` for not existing', execute(async function* test() {
+      const cas = yield getCas(key)
+
+      expect(cas).to.equal(null)
+    }))
+  })
 })
