@@ -784,8 +784,9 @@ bl@^1.0.0:
     safe-buffer "^5.1.1"
 
 borders-key-value@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/borders-key-value/-/borders-key-value-3.0.0.tgz#d524ce3336357126f493b066e012dd3d1123a60b"
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/borders-key-value/-/borders-key-value-3.2.1.tgz#66f8bb0a2b913b5c0756225c24b87b070a6e383d"
+  integrity sha512-prkGeA8/TMgMscY5HaTq87jZ46mNwRkKtATCtAW+Mtb82BXkBknHX5aBP56183F2vvPPJ3XtZAnSiLD/MW9qpg==
 
 borders@^2.0.0:
   version "2.0.0"
