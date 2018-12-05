@@ -33,7 +33,7 @@
     "borders": "^2.0.0",
     "borders-key-value": "^3.0.0",
     "chai": "^4.2.0",
-    "couchbase": "^2.6.0",
+    "couchbase": "^2.6.2",
     "eslint": "^5.7.0",
     "eslint-config-actano-base": "^4.0.0",
     "eslint-plugin-import": "^2.14.0",
