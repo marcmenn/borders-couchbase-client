@@ -786,11 +786,10 @@ bl@^1.0.0:
 borders-key-value@^3.0.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/borders-key-value/-/borders-key-value-3.2.1.tgz#66f8bb0a2b913b5c0756225c24b87b070a6e383d"
-  integrity sha512-prkGeA8/TMgMscY5HaTq87jZ46mNwRkKtATCtAW+Mtb82BXkBknHX5aBP56183F2vvPPJ3XtZAnSiLD/MW9qpg==
 
-borders@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/borders/-/borders-2.0.0.tgz#84d45e53b0b712b9fb6e6e1304e2f577a1eb5579"
+borders@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/borders/-/borders-2.1.1.tgz#b79d1bb6eb2948d55d27cc81e8bd4dcd2563cef7"
 
 brace-expansion@^1.1.7:
   version "1.1.11"
