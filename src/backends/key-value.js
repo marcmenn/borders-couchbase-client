@@ -1,6 +1,5 @@
 import {
   GET,
-  GET_CAS,
   INSERT,
   KeyAlreadyExistsError,
   KeyNotFoundError,
@@ -106,16 +105,6 @@ export default class CouchbaseBucketKeyValueBackend {
       }
       throw e
     }
-  }
-
-  async [GET_CAS]({ key }) {
-    // This cache always has a valid prototype,
-    // therefore we can assume that `hasOwnProperty` exists.
-    // eslint-disable-next-line no-prototype-builtins
-    if (this._casCache.hasOwnProperty(key)) {
-      return this._casCache[key]
-    }
-    return null
   }
 }
 

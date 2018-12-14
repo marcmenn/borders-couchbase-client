@@ -783,10 +783,10 @@ bl@^1.0.0:
     readable-stream "^2.3.5"
     safe-buffer "^5.1.1"
 
-borders-key-value@^3.0.0:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/borders-key-value/-/borders-key-value-3.2.1.tgz#66f8bb0a2b913b5c0756225c24b87b070a6e383d"
-  integrity sha512-prkGeA8/TMgMscY5HaTq87jZ46mNwRkKtATCtAW+Mtb82BXkBknHX5aBP56183F2vvPPJ3XtZAnSiLD/MW9qpg==
+borders-key-value@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/borders-key-value/-/borders-key-value-3.6.0.tgz#0e78fbacffb011464f02f5bb46ce1f12bbeb693b"
+  integrity sha512-TM8tSnvF3TPQ0TxI+OF+viUqmzfR6EtlPddTNenFWa2ptFpntYbbCUZrFyz/apUnvk4KfXqXGzODNK3PiDsnfg==
 
 borders@^2.0.0:
   version "2.0.0"
