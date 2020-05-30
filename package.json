@@ -28,7 +28,7 @@
     "@babel/core": "^7.10.2",
     "@babel/polyfill": "^7.10.1",
     "@babel/preset-env": "^7.10.2",
-    "@babel/register": "^7.0.0",
+    "@babel/register": "^7.10.1",
     "babel-eslint": "^10.0.1",
     "borders": "^2.0.0",
     "borders-key-value": "^3.6.0",
